@@ -1,0 +1,10 @@
+$wrk -t4 -c100 -d15s http://localhost:8080/mvc/hello
+
+Running 15s test @ http://localhost:8080/mvc/hello
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   102.61ms    8.57ms 206.24ms   99.10%
+    Req/Sec   245.87     22.05   252.00     94.93%
+  14600 requests in 15.05s, 1.80MB read
+Requests/sec:    970.17
+Transfer/sec:    122.34KB

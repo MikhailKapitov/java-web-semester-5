@@ -1,0 +1,10 @@
+$wrk -t4 -c100 -d15s http://localhost:8080/webflux/hello
+
+Running 15s test @ http://localhost:8080/webflux/hello
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   102.45ms    3.04ms 139.31ms   97.21%
+    Req/Sec   244.40     24.61   252.00     94.13%
+  14600 requests in 15.05s, 1.85MB read
+Requests/sec:    969.91
+Transfer/sec:    126.10KB
