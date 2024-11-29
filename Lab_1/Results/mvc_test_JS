@@ -1,0 +1,36 @@
+const REQUEST_CNT = 100;
+let ttl_time = 0;
+
+async function sendRequests() {
+  const requests = [];
+  
+  // Create all requests as promises and store them in an array
+  for (let i = 0; i < REQUEST_CNT; i++) {
+    const requestPromise = new Promise((resolve, reject) => {
+      pm.sendRequest("http://localhost:8080/mvc/hello", function (err, response) {
+        if (err) {
+          reject(err); // Reject promise on error
+        } else {
+          ttl_time += response.responseTime;
+          resolve(response); // Resolve promise on successful response
+        }
+      });
+    });
+    
+    requests.push(requestPromise); // Push each promise into the array
+  }
+
+  // Wait for all promises to resolve
+  try {
+    await Promise.all(requests);
+    console.log('All requests completed.');
+    console.log(ttl_time / REQUEST_CNT);
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+}
+
+// Call the function to start sending requests
+sendRequests();
+
+103.87
